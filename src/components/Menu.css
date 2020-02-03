@@ -1,0 +1,17 @@
+nav {
+    display: flex;
+    list-style: none;
+}
+
+nav a {
+    color: #000000;
+    text-decoration: none;
+}
+
+nav a.googleplay {
+    background: url(../images/google-play-badge.svg) center center no-repeat;
+}
+
+nav a.appstore {
+    background: url(../images/app-store-badge.svg) center center no-repeat;
+}

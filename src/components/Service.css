@@ -1,0 +1,35 @@
+.App ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+}
+
+.App ul li {
+  flex: 1;
+  text-align: center;
+  margin: calc(1.43rem / 2);
+}
+
+.App ul {
+  margin: 0 calc(-1.43rem / 4);
+}
+
+.App ul li a {
+  background-color: #ffffff;
+  display: block;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow:
+  0 2.6px 2.7px rgba(0, 0, 0, 0.012), 0 6.5px 6.9px rgba(0, 0, 0, 0.018), 0 13.3px 14.2px rgba(0, 0, 0, 0.022), 0 27.4px 29.2px rgba(0, 0, 0, 0.028), 0 75px 80px rgba(0, 0, 0, 0.0);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: bold;
+  min-width: 9.3rem;
+}
+
+li img {
+  display: block;
+  height: 6rem;
+  margin: auto;
+}
