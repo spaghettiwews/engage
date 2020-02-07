@@ -18,7 +18,6 @@ class Home extends React.Component {
             />
           ))}
         </ul>
-        <Hero />
       </>
     );
   }

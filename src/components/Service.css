@@ -20,8 +20,9 @@
   display: block;
   border-radius: 10px;
   padding: 1rem;
-  box-shadow:
-  0 2.6px 2.7px rgba(0, 0, 0, 0.012), 0 6.5px 6.9px rgba(0, 0, 0, 0.018), 0 13.3px 14.2px rgba(0, 0, 0, 0.022), 0 27.4px 29.2px rgba(0, 0, 0, 0.028), 0 75px 80px rgba(0, 0, 0, 0.0);
+  box-shadow: 0 2.6px 2.7px rgba(0, 0, 0, 0.012),
+    0 6.5px 6.9px rgba(0, 0, 0, 0.018), 0 13.3px 14.2px rgba(0, 0, 0, 0.022),
+    0 27.4px 29.2px rgba(0, 0, 0, 0.028), 0 75px 80px rgba(0, 0, 0, 0);
   text-decoration: none;
   font-size: 1rem;
   font-weight: bold;
@@ -32,4 +33,13 @@ li img {
   display: block;
   height: 6rem;
   margin: auto;
+}
+
+li.service a.active {
+  color: #000;
+  background-image: radial-gradient(
+    circle 464px at 51.6% 98.9%,
+    rgba(254, 243, 87, 1) 13.4%,
+    rgba(248, 164, 66, 1) 100.2%
+  );
 }

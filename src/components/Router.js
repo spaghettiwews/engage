@@ -5,14 +5,16 @@ import Footer from "./Footer";
 // import NotFound from "./NotFound";
 import { BrowserRouter, Route } from "react-router-dom";
 import BookingForm from "./BookingForm";
+import Hero from "./Hero";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Header />
       <main className="App">
+        <Home />
         <Route exact path="/">
-          <Home />
+          <Hero />
         </Route>
         <Route exact path="/booking/:bookingSlug">
           <BookingForm />

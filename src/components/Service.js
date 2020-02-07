@@ -9,7 +9,7 @@ class Service extends React.Component {
   // };
   render() {
     return (
-      <li>
+      <li className="service">
         <NavLink to={this.props.url}>
           <img alt={this.props.label} src={this.props.icon} />
           {this.props.label}
