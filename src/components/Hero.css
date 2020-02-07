@@ -1,0 +1,28 @@
+.hero {
+  display: flex;
+  margin-top: 2.5rem;
+}
+
+.hero .hero__image {
+  border-radius: 10px;
+  box-shadow: 6px 7px 24px 0 rgba(0, 0, 0, 0.19);
+  overflow: hidden;
+}
+
+.hero .hero__image img {
+  display: block;
+  filter: grayscale(100%);
+  max-height: 520px;
+  transform: rotateY(180deg);
+}
+
+.hero .hero__caption {
+  flex: 1;
+  padding: 0 2.5rem;
+}
+
+.hero .hero__caption h2 {
+  margin: 0;
+  font-size: 3.6rem;
+  font-weight: 100;
+}
