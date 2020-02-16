@@ -4,6 +4,12 @@ import { locations } from "../siteConfig";
 import { useFormik } from "formik";
 
 const BookingForm = function() {
+  const encode = data => {
+    return Object.keys(data)
+      .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+      .join("&");
+  };
+
   const formik = useFormik({
     initialValues: {
       fullName: "",
@@ -15,12 +21,20 @@ const BookingForm = function() {
       preferredTimeForRepair: "",
       location: ""
     },
-    onSubmit: values => {}
+    onSubmit: values => {
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({ "form-name": "contact", ...values })
+      })
+        .then(() => alert("Success!"))
+        .catch(error => alert(error));
+    }
   });
 
   return (
     <React.Fragment>
-      <form>
+      <form onSubmit={formik.handleSubmit}>
         <label>
           Name:
           <input
