@@ -25,7 +25,7 @@ const BookingForm = function() {
       fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: encode({ "form-name": "contact", ...values })
+        body: encode({ "form-name": "bookings", ...values })
       })
         .then(() => alert("Success!"))
         .catch(error => alert(error));
@@ -35,6 +35,7 @@ const BookingForm = function() {
   return (
     <React.Fragment>
       <form onSubmit={formik.handleSubmit}>
+        <input type="hidden" name="form-name" value="bookings" />
         <label>
           Name:
           <input
