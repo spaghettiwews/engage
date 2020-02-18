@@ -29,6 +29,28 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <form name="bookings" netlify netlify-honeypot="bot-field" hidden>
+      <input id="fullName" name="fullName" type="text" />
+      <input id="phoneNumber" name="phoneNumber" type="tel" />
+      <input id="emailAddress" name="emailAddress" type="email" />
+      <select id="location" name="location"></select>
+      <input
+        id="applianceDescription"
+        name="applianceDescription"
+        type="text"
+      />
+      <textarea id="applianceProblem" name="applianceProblem"></textarea>
+      <input
+        id="preferredDateForRepair"
+        name="preferredDateForRepair"
+        type="date"
+      />
+      <input
+        id="preferredTimeForRepair"
+        name="preferredTimeForRepair"
+        type="time"
+      />
+    </form>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
