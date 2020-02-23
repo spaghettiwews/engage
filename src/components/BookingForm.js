@@ -27,7 +27,7 @@ const BookingForm = function(props) {
   return (
     <React.Fragment>
       <h2 className="form__heading">Book service for your </h2>
-      <form name="bookings" method="post" action="/thankyou">
+      <form name="bookings" method="POST" action="/thankyou/">
         <input type="hidden" name="form-name" value="bookings" />
         <div className="multi-column">
           <label>
@@ -117,7 +117,7 @@ const BookingForm = function(props) {
               placeholder="When should our technician visit?"
               noBorder={true}
               block={true}
-              displayFormat="DD MMMM YYYY"
+              displayFormat="dddd, DD MMMM YYYY"
             />
           </label>
           <label>

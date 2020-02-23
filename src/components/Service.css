@@ -11,12 +11,9 @@
   margin: 0 calc(1.43rem / 2) 1.43rem;
 }
 
-.App ul {
-  margin: 0 calc(-1.43rem / 4);
-}
-
 .App ul li a {
   background-color: #ffffff;
+  box-sizing: content-box;
   display: block;
   border-radius: 10px;
   padding: 1rem;

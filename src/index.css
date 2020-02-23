@@ -1,6 +1,10 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap");
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   background-color: rgba(241, 246, 251, 0.6);
   margin: 0;

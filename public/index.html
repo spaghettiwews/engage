@@ -31,9 +31,10 @@
     <div id="root"></div>
     <form
       name="bookings"
-      action="/thankyou"
       netlify
       netlify-honeypot="bot-field"
+      method="POST"
+      action="/thankyou/"
       hidden
     >
       <input id="fullName" name="fullName" type="text" />

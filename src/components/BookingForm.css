@@ -88,3 +88,19 @@ label .DateInput {
   background: none;
   display: block;
 }
+
+@media (max-width: 70em) {
+  form {
+    padding: 0 2rem;
+  }
+}
+
+@media (max-width: 60em) {
+  .multi-column {
+    flex-wrap: wrap;
+    gap: 0;
+  }
+  .multi-column > * {
+    flex: 100% 1;
+  }
+}
