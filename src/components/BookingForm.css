@@ -1,0 +1,90 @@
+form {
+  padding: 0rem;
+}
+
+.form__heading {
+  margin: 1rem 0 3rem;
+  font-size: 2rem;
+  font-weight: 100 !important;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.form__heading::after {
+  content: "";
+  width: 100px;
+  height: 1px;
+  background: black;
+  display: block;
+  margin: 1rem auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+label input,
+label textarea,
+label select,
+label input.DateInput_input {
+  display: block;
+  width: 100%;
+  margin: 0.3rem 0 0 0;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  box-sizing: border-box;
+  font-size: 1.3rem;
+  font-family: "Roboto", sans-serif;
+  line-height: initial;
+}
+
+input::placeholder,
+textarea::placeholder {
+  opacity: 0.3;
+}
+
+label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 100;
+  letter-spacing: 1px;
+  margin-bottom: 2.5rem;
+  text-transform: uppercase;
+}
+
+button[type="submit"] {
+  background-color: #1b0080;
+  border: 2px solid #1b0080;
+  border-radius: 2px;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.3rem;
+  padding: 0.5rem 3rem;
+}
+
+.multi-column {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.multi-column > * {
+  flex: 1;
+}
+
+.timePicker {
+  display: flex;
+}
+
+.timePicker input,
+.timePicker select {
+  width: 100px;
+  margin-right: 10px;
+}
+
+/* clear react-dates defaults */
+label .DateInput {
+  background: none;
+  display: block;
+}

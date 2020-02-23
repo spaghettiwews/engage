@@ -1,186 +1,130 @@
-import React from "react";
+import React, { useState } from "react";
 import "./BookingForm.css";
 import { locations } from "../siteConfig";
-// import { useFormik } from "formik";
+import { useFormik } from "formik";
+import "react-dates/initialize";
+import "react-dates/lib/css/_datepicker.css";
+import { OPEN_UP } from "react-dates/constants";
+import { SingleDatePicker } from "react-dates";
+import TimePicker from "./TimePicker";
 
-const BookingForm = function() {
-  // function encode(object) {
-  //   var encodedString = "";
-  //   for (var prop in object) {
-  //     if (object.hasOwnProperty(prop)) {
-  //       if (encodedString.length > 0) {
-  //         encodedString += "&";
-  //       }
-  //       encodedString += encodeURI(prop + "=" + object[prop]);
-  //     }
-  //   }
-  //   return encodedString;
-  // }
-
-  // const formik = useFormik({
-  //   initialValues: {
-  //     fullName: "",
-  //     phoneNumber: "",
-  //     emailAddress: "",
-  //     applianceDescription: "",
-  //     applianceProblem: "",
-  //     preferredDateForRepair: "",
-  //     preferredTimeForRepair: "",
-  //     location: ""
-  //   },
-  //   onSubmit: values => {
-  //     fetch("/", {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-  //       body: encode({ "form-name": "bookings", ...values })
-  //     })
-  //       .then(() => alert("Success!"))
-  //       .catch(error => alert(error));
-  //   }
-  // });
+const BookingForm = function(props) {
+  const [date, setDate] = useState(null);
+  const [focused, setFocused] = useState(false);
+  const formik = useFormik({
+    initialValues: {
+      fullName: "",
+      phoneNumber: "",
+      emailAddress: "",
+      applianceDescription: "",
+      applianceProblem: "",
+      preferredDateForRepair: "",
+      preferredTimeForRepair: "",
+      location: ""
+    }
+  });
 
   return (
     <React.Fragment>
-      {/* <form onSubmit={formik.handleSubmit}>
+      <h2 className="form__heading">Book service for your </h2>
+      <form name="bookings" method="post" action="/thankyou">
         <input type="hidden" name="form-name" value="bookings" />
+        <div className="multi-column">
+          <label>
+            Name
+            <input
+              id="fullName"
+              name="fullName"
+              type="text"
+              onChange={formik.handleChange}
+              value={formik.values.fullName}
+              placeholder="What's your name?"
+            />
+          </label>
+          <label>
+            Phone number
+            <input
+              id="phoneNumber"
+              name="phoneNumber"
+              type="tel"
+              onChange={formik.handleChange}
+              value={formik.values.phoneNumber}
+              placeholder="What number can we contact you on?"
+            />
+          </label>
+        </div>
+        <div className="multi-column">
+          <label>
+            Email address
+            <input
+              id="emailAddress"
+              name="emailAddress"
+              type="email"
+              onChange={formik.handleChange}
+              value={formik.values.emailAddress}
+              placeholder="And your email address?"
+            />
+          </label>
+          <label>
+            Location
+            <select
+              id="location"
+              name="location"
+              onChange={formik.handleChange}
+              value={formik.values.location}
+            >
+              {locations.map(location => (
+                <option key={location.label} value={location.value}>
+                  {location.label}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
         <label>
-          Name:
-          <input
-            id="fullName"
-            name="fullName"
-            type="text"
-            onChange={formik.handleChange}
-            value={formik.values.fullName}
-          />
-        </label>
-        <label>
-          Phone number:
-          <input
-            id="phoneNumber"
-            name="phoneNumber"
-            type="tel"
-            onChange={formik.handleChange}
-            value={formik.values.phoneNumber}
-          />
-        </label>
-        <label>
-          Email address:
-          <input
-            id="emailAddress"
-            name="emailAddress"
-            type="email"
-            onChange={formik.handleChange}
-            value={formik.values.emailAddress}
-          />
-        </label>
-        <label>
-          Location:
-          <select
-            id="location"
-            name="location"
-            onChange={formik.handleChange}
-            value={formik.values.location}
-          >
-            {locations.map(location => (
-              <option key={location} value={location}>
-                {location}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Description of your appliance:
+          Description of your appliance
           <input
             id="applianceDescription"
             name="applianceDescription"
             type="text"
             onChange={formik.handleChange}
             value={formik.values.applianceDescription}
+            placeholder="Tell us the name and model of your appliance, e.g. Samsung UA-46EH5300"
           />
         </label>
         <label>
-          Problem with your appliance:
+          Problem with your appliance
           <textarea
             id="applianceProblem"
             name="applianceProblem"
             onChange={formik.handleChange}
             value={formik.values.applianceProblem}
+            placeholder="Tell us what's wrong with your appliance"
+            rows="6"
           ></textarea>
         </label>
-        <label>
-          Preferred Date for Repair:
-          <input
-            id="preferredDateForRepair"
-            name="preferredDateForRepair"
-            type="date"
-            onChange={formik.handleChange}
-            value={formik.values.preferredDateForRepair}
-          />
-        </label>
-        <label>
-          Preferred Time for Repair:
-          <input
-            id="preferredTimeForRepair"
-            name="preferredTimeForRepair"
-            type="time"
-            onChange={formik.handleChange}
-            value={formik.values.preferredTimeForRepair}
-          />
-        </label>
-        <button type="submit">Submit</button>
-      </form> */}
-      <form name="bookings" method="post">
-        <input type="hidden" name="form-name" value="bookings" />
-        <label>
-          Name:
-          <input id="fullName" name="fullName" type="text" />
-        </label>
-        <label>
-          Phone number:
-          <input id="phoneNumber" name="phoneNumber" type="tel" />
-        </label>
-        <label>
-          Email address:
-          <input id="emailAddress" name="emailAddress" type="email" />
-        </label>
-        <label>
-          Location:
-          <select id="location" name="location">
-            {locations.map(location => (
-              <option key={location} value={location}>
-                {location}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Description of your appliance:
-          <input
-            id="applianceDescription"
-            name="applianceDescription"
-            type="text"
-          />
-        </label>
-        <label>
-          Problem with your appliance:
-          <textarea id="applianceProblem" name="applianceProblem"></textarea>
-        </label>
-        <label>
-          Preferred Date for Repair:
-          <input
-            id="preferredDateForRepair"
-            name="preferredDateForRepair"
-            type="date"
-          />
-        </label>
-        <label>
-          Preferred Time for Repair:
-          <input
-            id="preferredTimeForRepair"
-            name="preferredTimeForRepair"
-            type="time"
-          />
-        </label>
+        <div className="multi-column">
+          <label>
+            Preferred Date for Repair
+            <SingleDatePicker
+              numberOfMonths={1}
+              date={date} // momentPropTypes.momentObj or null
+              onDateChange={date => setDate(date)} // PropTypes.func.isRequired
+              focused={focused} // PropTypes.bool
+              onFocusChange={({ focused }) => setFocused(focused)} // PropTypes.func.isRequired
+              id="preferredDateForRepair" // PropTypes.string.isRequired,
+              openDirection={OPEN_UP}
+              placeholder="When should our technician visit?"
+              noBorder={true}
+              block={true}
+              displayFormat="DD MMMM YYYY"
+            />
+          </label>
+          <label>
+            Preferred Time for Repair
+            <TimePicker id="preferredTimeForRepair" />
+          </label>
+        </div>
         <button type="submit">Submit</button>
       </form>
     </React.Fragment>
