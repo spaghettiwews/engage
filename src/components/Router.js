@@ -21,7 +21,7 @@ const Router = () => {
           <Route exact path="/b/:bookingSlug">
             <BookingForm />
           </Route>
-          <Route exact path="/thankyou">
+          <Route exact path="/thank-you">
             <ThankYou />
           </Route>
           <Route>
