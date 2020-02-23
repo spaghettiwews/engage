@@ -125,7 +125,7 @@ const BookingForm = function(props) {
             <TimePicker id="preferredTimeForRepair" />
           </label>
         </div>
-        <button type="submit">Submit</button>
+        <input type="submit" value="Submit booking" />
       </form>
     </React.Fragment>
   );
