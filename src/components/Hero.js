@@ -8,9 +8,9 @@ const Hero = () => {
       {heroSlides.map(heroSlide => {
         return (
           <>
-            <div className="hero__image">
+            {/* <div className="hero__image">
               <img src={heroSlide.image} alt="hero" />
-            </div>
+            </div> */}
             <div className="hero__caption">
               <h2>{heroSlide.caption}</h2>
             </div>

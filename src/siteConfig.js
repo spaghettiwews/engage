@@ -13,19 +13,19 @@ export const services = [
   {
     icon: airconditioner,
     label: "Air Conditioner",
-    url: "/booking/airconditioner"
+    url: "/airconditioner"
   },
-  { icon: dishwasher, label: "Dishwasher", url: "/booking/dishwasher" },
-  { icon: fridge, label: "Fridge/Freezer", url: "/booking/fridge" },
-  { icon: gasstove, label: "Gas Stove", url: "/booking/gasstove" },
-  { icon: microwave, label: "Microwave", url: "/booking/microwave" },
-  { icon: stove, label: "Stove/Hob/Oven", url: "/booking/stove" },
-  { icon: television, label: "Television", url: "/booking/television" },
-  { icon: tumbledryer, label: "Tumble Dryer", url: "/booking/tumbledryer" },
+  { icon: dishwasher, label: "Dishwasher", url: "/dishwasher" },
+  { icon: fridge, label: "Fridge/Freezer", url: "/fridge" },
+  { icon: gasstove, label: "Gas Stove", url: "/gasstove" },
+  { icon: microwave, label: "Microwave", url: "/microwave" },
+  { icon: stove, label: "Stove/Hob/Oven", url: "/stove" },
+  { icon: television, label: "Television", url: "/television" },
+  { icon: tumbledryer, label: "Tumble Dryer", url: "/tumbledryer" },
   {
     icon: washingmachine,
     label: "Washing Machine",
-    url: "/booking/washingmachine"
+    url: "/washingmachine"
   }
 ];
 
@@ -39,7 +39,7 @@ export const navLinks = [
 export const heroSlides = [
   {
     image: heroImage,
-    caption: "On-site appliance repairs, anywhere in Johannesburg and Pretoria"
+    caption: "Book service for your"
   }
 ];
 
@@ -62,6 +62,10 @@ const siteConfig = {
   copyright: "Copyright © " + new Date().getFullYear()
 };
 
-export const locations = ["Johannesburg", "Pretoria"];
+export const locations = [
+  { label: "Where is the faulty appliance?", value: "" },
+  { label: "Johannesburg", value: "Johannesburg" },
+  { label: "Pretoria", value: "Pretoria" }
+];
 
 export default siteConfig;
