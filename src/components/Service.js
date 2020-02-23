@@ -1,19 +1,15 @@
 import React from "react";
 import "./Service.css";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class Service extends React.Component {
-  // getUrl = event => {
-  //   event.preventDefault();
-  //   this.props.history.push(this.props.url);
-  // };
   render() {
     return (
       <li className="service">
-        <NavLink to={this.props.url}>
+        <Link to={`/b${this.props.url}`}>
           <img alt={this.props.label} src={this.props.icon} />
           {this.props.label}
-        </NavLink>
+        </Link>
       </li>
     );
   }
