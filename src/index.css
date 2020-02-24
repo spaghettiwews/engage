@@ -57,3 +57,9 @@ h2.page__heading::after {
 .align--center {
   text-align: center;
 }
+
+.fourohfour {
+  display: block;
+  width: 200px;
+  margin: 0 auto 2rem;
+}

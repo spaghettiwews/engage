@@ -1,9 +1,11 @@
 import React from "react";
-import Header from "./Header";
+import circuit from "../images/incomplete-circuit.svg";
 
 const NotFound = () => (
   <React.Fragment>
-    <h1>NotFound</h1>
+    <img className="fourohfour" src={circuit} alt="incomplete circuit" />
+    <h2 className="page__heading">The circuit you are on appears broken.</h2>
+    <p className="align--center">Sorry, that page does not exist.</p>
   </React.Fragment>
 );
 

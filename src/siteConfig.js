@@ -7,6 +7,7 @@ import fridge from "./images/fridge.svg";
 import television from "./images/television.svg";
 import microwave from "./images/microwave.svg";
 import airconditioner from "./images/airconditioner.svg";
+import satafrika from "./images/satafrika.svg";
 
 export const services = [
   {
@@ -29,7 +30,7 @@ export const services = [
 ];
 
 export const navLinks = [
-  { label: "home", url: "/" }
+  { label: "home", url: "/", icon: satafrika }
   //   { label: "contact us", url: "/" },
   //   { label: "Google Play", url: "/" },
   //   { label: "App Store", url: "/" }

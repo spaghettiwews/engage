@@ -9,7 +9,10 @@ class Menu extends React.Component {
       <nav>
         {siteConfig.navLinks.map((link, index) => (
           <li key={index}>
-            <NavLink to={link.url}>{link.label}</NavLink>
+            <NavLink to={link.url}>
+              <span>{link.label}</span>
+              <img src={link.icon} alt={link.label} />
+            </NavLink>
           </li>
         ))}
       </nav>
