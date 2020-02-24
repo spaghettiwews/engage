@@ -5,7 +5,6 @@ import Footer from "./Footer";
 import NotFound from "./NotFound";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import BookingForm from "./BookingForm";
-import Hero from "./Hero";
 import ThankYou from "./ThankYou";
 
 const Router = () => {
@@ -15,7 +14,7 @@ const Router = () => {
       <main className="App">
         <Switch>
           <Route exact path="/">
-            <Hero />
+            <h2 className="page__heading">Book service for your</h2>
             <Home />
           </Route>
           <Route exact path="/b/:bookingSlug">

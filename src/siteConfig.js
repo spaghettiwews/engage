@@ -7,7 +7,6 @@ import fridge from "./images/fridge.svg";
 import television from "./images/television.svg";
 import microwave from "./images/microwave.svg";
 import airconditioner from "./images/airconditioner.svg";
-import heroImage from "./images/hero-image.jpg";
 
 export const services = [
   {
@@ -36,13 +35,6 @@ export const navLinks = [
   //   { label: "App Store", url: "/" }
 ];
 
-export const heroSlides = [
-  {
-    image: heroImage,
-    caption: "Book service for your"
-  }
-];
-
 const siteConfig = {
   title: "Engage Electronics",
   tagline: "On-site Appliance Repairs. Johannesburg and Pretoria",
@@ -56,8 +48,6 @@ const siteConfig = {
     primaryColor: "#175ff8",
     secondaryColor: "#ffffff"
   },
-
-  heroSlides,
 
   copyright: "Copyright © " + new Date().getFullYear()
 };

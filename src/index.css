@@ -34,3 +34,26 @@ code {
   flex-direction: column;
   height: 100vh;
 }
+h2.page__heading {
+  margin: 1rem 0 3rem;
+  font-size: 2rem;
+  font-weight: 100 !important;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+h2.page__heading::after {
+  content: "";
+  width: 100px;
+  height: 1px;
+  background: black;
+  display: block;
+  margin: 1rem auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.align--center {
+  text-align: center;
+}
