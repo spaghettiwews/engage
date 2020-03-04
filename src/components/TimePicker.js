@@ -1,31 +1,40 @@
 import React, { useState } from "react";
 
 const TimePicker = props => {
-  const [hour, setHour] = useState(null);
-  const [minutes, setMinutes] = useState(null);
-  const [period, setPeriod] = useState(null);
+  const [hour, setHour] = useState("");
+  const [minutes, setMinutes] = useState("");
+  const [period, setPeriod] = useState("");
   return (
     <div className="timePicker">
       <input
-        type="number"
+        type="text"
+        inputMode="numeric"
+        pattern="[0-9]*"
         placeholder="hh"
-        onChange={event => setHour(Number.parseInt(event.target.value))}
+        onChange={event => setHour(event.target.value)}
         value={hour}
-        min={1}
-        max={12}
       />
       <input
-        type="number"
+        type="text"
+        inputMode="numeric"
+        pattern="[0-9]*"
         placeholder="mm"
-        onChange={event => setMinutes(Number.parseInt(event.target.value))}
+        onChange={event => setMinutes(event.target.value)}
+        onBlur={event => {
+          if (Number.parseInt(event.target.value) < 10) {
+            setMinutes(`0${event.target.value}`);
+          }
+        }}
         value={minutes}
-        min={0}
-        max={59}
-        step={1}
       />
-      <select value={period} onChange={event => setPeriod(event.target.value)}>
-        <option value="AM">AM</option>
-        <option value="PM">PM</option>
+      <select
+        value={period}
+        onChange={event => setPeriod(event.target.value)}
+        required
+      >
+        <option value="">--</option>
+        <option value="am">am</option>
+        <option value="pm">pm</option>
       </select>
       <input
         id={props.id}
