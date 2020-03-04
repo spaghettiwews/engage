@@ -32,41 +32,42 @@ const BookingForm = function(props) {
         <div className="multi-column">
           <label>
             Name
+            <span>What's your name?</span>
             <input
               id="fullName"
               name="fullName"
               type="text"
               onChange={formik.handleChange}
               value={formik.values.fullName}
-              placeholder="What's your name?"
             />
           </label>
           <label>
             Phone number
+            <span>What number can we contact you on?</span>
             <input
               id="phoneNumber"
               name="phoneNumber"
               type="tel"
               onChange={formik.handleChange}
               value={formik.values.phoneNumber}
-              placeholder="What number can we contact you on?"
             />
           </label>
         </div>
         <div className="multi-column">
           <label>
             Email address
+            <span>And your email address?</span>
             <input
               id="emailAddress"
               name="emailAddress"
               type="email"
               onChange={formik.handleChange}
               value={formik.values.emailAddress}
-              placeholder="And your email address?"
             />
           </label>
           <label>
             Location
+            <span>Where is the faulty appliance?</span>
             <select
               id="location"
               name="location"
@@ -83,29 +84,33 @@ const BookingForm = function(props) {
         </div>
         <label>
           Description of your appliance
+          <span>
+            Tell us the name and model of your appliance, e.g. Samsung
+            UA-46EH5300
+          </span>
           <input
             id="applianceDescription"
             name="applianceDescription"
             type="text"
             onChange={formik.handleChange}
             value={formik.values.applianceDescription}
-            placeholder="Tell us the name and model of your appliance, e.g. Samsung UA-46EH5300"
           />
         </label>
         <label>
           Problem with your appliance
+          <span>Tell us what's wrong with your appliance</span>
           <textarea
             id="applianceProblem"
             name="applianceProblem"
             onChange={formik.handleChange}
             value={formik.values.applianceProblem}
-            placeholder="Tell us what's wrong with your appliance"
             rows="6"
           ></textarea>
         </label>
         <div className="multi-column">
           <label>
             Preferred Date for Repair
+            <span>When should our technician visit?</span>
             <SingleDatePicker
               numberOfMonths={1}
               date={date} // momentPropTypes.momentObj or null
@@ -114,7 +119,6 @@ const BookingForm = function(props) {
               onFocusChange={({ focused }) => setFocused(focused)} // PropTypes.func.isRequired
               id="preferredDateForRepair" // PropTypes.string.isRequired,
               openDirection={OPEN_UP}
-              placeholder="When should our technician visit?"
               noBorder={true}
               block={true}
               displayFormat="dddd, DD MMMM YYYY"
@@ -122,6 +126,7 @@ const BookingForm = function(props) {
           </label>
           <label>
             Preferred Time for Repair
+            <span>What time is best for you?</span>
             <TimePicker id="preferredTimeForRepair" />
           </label>
         </div>

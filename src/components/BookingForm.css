@@ -52,6 +52,12 @@ label {
   text-transform: uppercase;
 }
 
+label > span {
+  display: block;
+  text-transform: none;
+  color: #8a8a8af2;
+}
+
 button[type="submit"],
 input[type="submit"] {
   background-color: #1b0080;
