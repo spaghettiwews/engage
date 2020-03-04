@@ -54,7 +54,7 @@ const siteConfig = {
 };
 
 export const locations = [
-  { label: "Where is the faulty appliance?", value: "" },
+  { label: "", value: "" },
   { label: "Johannesburg", value: "Johannesburg" },
   { label: "Pretoria", value: "Pretoria" }
 ];
