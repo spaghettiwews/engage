@@ -7,6 +7,12 @@ import "react-dates/lib/css/_datepicker.css";
 import { OPEN_UP } from "react-dates/constants";
 import { SingleDatePicker } from "react-dates";
 import TimePicker from "./TimePicker";
+import { withRouter } from "react-router-dom";
+
+const submitForm = function(event, props) {
+  event.preventDefault();
+  props.history.push("/thank-you");
+};
 
 const BookingForm = function(props) {
   const [date, setDate] = useState(null);
@@ -27,7 +33,11 @@ const BookingForm = function(props) {
   return (
     <React.Fragment>
       <h2 className="form__heading">Book service for your </h2>
-      <form name="bookings" method="POST" action="/thank-you/">
+      <form
+        name="bookings"
+        method="POST"
+        onSubmit={event => submitForm(event, props)}
+      >
         <input type="hidden" name="form-name" value="bookings" />
         <div className="multi-column">
           <label>
@@ -136,4 +146,4 @@ const BookingForm = function(props) {
   );
 };
 
-export default BookingForm;
+export default withRouter(BookingForm);
