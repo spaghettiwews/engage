@@ -1,0 +1,9 @@
+.alert {
+    line-height: 1.5;
+    max-width: 65rem;
+    margin: 3rem auto 0;
+    text-align: center;
+    padding: 1rem 2rem;
+    border: 1px solid #13087b;
+    background: #6398ff2e;
+}

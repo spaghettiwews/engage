@@ -6,11 +6,14 @@ import NotFound from "./NotFound";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import BookingForm from "./BookingForm";
 import ThankYou from "./ThankYou";
+import { alert } from "../siteConfig";
+import Alert from "./Alert";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Header />
+      <Alert message={alert}/>
       <main className="App">
         <Switch>
           <Route exact path="/">

@@ -36,11 +36,20 @@ export const navLinks = [
   //   { label: "App Store", url: "/" }
 ];
 
+export const alert = {
+  __html: `
+  <h2>WE ARE OPEN 7 DAYS A WEEK!</h2>
+  <p>OPEN DURING THE LOCKDOWN - NORMAL RATES APPLY!<br/>
+  Our services are listed as essential during the national lockdown according to the Disaster Management Act, Annexure B - Categorisation of essential goods and services during lockdown, Regulation 11A, Section B.34 - Services, published in the Gazette 43240 on 20/04/20202.All our technicians have valid travel permits and implement all health and safety measures!
+  For all official information and updates on COVID-19, please visit: <a target="_blank" href="https://sacoronavirus.co.za/" alt="SA COVID-19 Portal">SA COVID-19 Portal</a></p>`
+};
+
 const siteConfig = {
   title: "Engage Electronics",
   tagline: "On-site Appliance Repairs. Johannesburg and Pretoria",
   url: "https://www.engageelectronics.co.za",
 
+  alert,
   services,
 
   navLinks,
