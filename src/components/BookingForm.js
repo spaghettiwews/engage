@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./BookingForm.css";
 import { locations } from "../siteConfig";
+import { applianceTypes } from "../siteConfig";
+import { applianceMakes } from "../siteConfig";
 import { useFormik } from "formik";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
@@ -22,7 +24,8 @@ const BookingForm = function(props) {
       fullName: "",
       phoneNumber: "",
       emailAddress: "",
-      applianceDescription: "",
+      applianceType: "",
+      applianceMake: "",
       applianceProblem: "",
       preferredDateForRepair: "",
       preferredTimeForRepair: "",
@@ -32,7 +35,7 @@ const BookingForm = function(props) {
 
   return (
     <React.Fragment>
-      <h2 className="form__heading">Book service for your </h2>
+      <h2 className="form__heading">Instant Repair Booking for your </h2>
       <form
         name="bookings"
         method="POST"
@@ -92,20 +95,40 @@ const BookingForm = function(props) {
             </select>
           </label>
         </div>
+        <div className="multi-column">
         <label>
-          Description of your appliance
-          <span>
-            Tell us the name and model of your appliance, e.g. Samsung
-            UA-46EH5300
-          </span>
-          <input
-            id="applianceDescription"
-            name="applianceDescription"
-            type="text"
-            onChange={formik.handleChange}
-            value={formik.values.applianceDescription}
-          />
-        </label>
+            Appliance type
+            <span>What appliance are you having issues with?</span>
+            <select
+              id="applianceType"
+              name="applianceType"
+              onChange={formik.handleChange}
+              value={formik.values.applianceType}
+            >
+              {applianceTypes.map(type => (
+                <option key={type.label} value={type.value}>
+                  {type.label}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Appliance make
+            <span>What make is your appliance?</span>
+            <select
+              id="applianceMake"
+              name="applianceMake"
+              onChange={formik.handleChange}
+              value={formik.values.applianceMake}
+            >
+              {applianceMakes.map(make => (
+                <option key={make.label} value={make.value}>
+                  {make.label}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>        
         <label>
           Problem with your appliance
           <span>Tell us what's wrong with your appliance</span>
