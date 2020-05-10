@@ -17,6 +17,21 @@ const Router = () => {
       <main className="App">
         <Switch>
           <Route exact path="/">
+            <div className="engage__welcome">
+            <h1 className="page__title">Same Day On-Site Appliance Repair Service In Centurion</h1>
+            <div className="engage__copy">
+            <div className="engage__copy--left">
+            <p>We repair and service all makes of home appliances: Samsung, LG, Defy, Bosch, Hisense, SMEG, Kelvinator, AEG, Siemens, Speed Queen, Whirlpool. We approach each service call with a passion for service excellence – offering high quality, affordable appliance repair service.</p>
+            <p>With a 6 months workmaship guarantee as your added peace of mind as well as the same day on-site service, we are the obvious choice for your appliance repairs. Our technicians are fully qualified to repair any type of appliance problem, right there, at your premises.</p>
+            <p>So, go ahead, chat to us, make a booking online or give us a call. We will take care of your appliance in a heartbeat.</p>
+            </div>
+            <div className="engage__copy--right">
+              <h2 className="phone">011 456 7890</h2>
+              <h2 className="chat">Online Chat</h2>
+            </div>
+            </div>
+            </div>
+            <BookingForm />
             <h2 className="page__heading">Book service for your</h2>
             <Home />
           </Route>
