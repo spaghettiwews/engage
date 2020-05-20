@@ -26,7 +26,7 @@ const Router = () => {
             <p>So, go ahead, chat to us, make a booking online or give us a call. We will take care of your appliance in a heartbeat.</p>
             </div>
             <div className="engage__copy--right">
-              <h2 className="phone">011 456 7890</h2>
+              <h2 className="phone">011 507 9834/h2>
               <h2 className="chat">Online Chat</h2>
             </div>
             </div>
