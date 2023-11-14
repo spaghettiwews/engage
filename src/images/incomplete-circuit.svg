@@ -1,24 +1,144 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!-- Generator: Adobe Illustrator 22.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 128 128" style="enable-background:new 0 0 128 128;" xml:space="preserve">
-<g id="_x36_">
-	<rect x="110.709" y="51.113" style="fill:#F26071;" width="16.036" height="27.978"/>
-	<circle style="fill:#FD9E00;" cx="67.043" cy="101.437" r="13.165"/>
-	<path style="fill:#231F20;" d="M19.991,58.054h-8.74V28.092h19.958c0.402,7.594,6.689,13.653,14.381,13.653
-		s13.978-6.059,14.38-13.653h17.15v-2.51H59.893c-0.865-7.131-6.943-12.677-14.303-12.677S32.15,18.451,31.286,25.582H8.741v32.472
-		H0v2.51h19.991V58.054z M38.109,36.58l7.481-7.48l7.48,7.48c-2.046,1.657-4.648,2.655-7.48,2.655
-		C42.757,39.235,40.155,38.237,38.109,36.58z M54.844,34.805l-7.48-7.48l7.48-7.481c1.657,2.046,2.655,4.648,2.655,7.481
-		C57.499,30.157,56.501,32.759,54.844,34.805z M53.069,18.07l-7.48,7.48l-7.48-7.48c2.046-1.657,4.648-2.655,7.48-2.655
-		C48.422,15.415,51.023,16.412,53.069,18.07z M36.334,19.844l7.48,7.48l-7.48,7.48c-1.657-2.046-2.655-4.648-2.655-7.48
-		C33.68,24.492,34.677,21.891,36.334,19.844z M128,49.864h-8.019V25.581H98.296l-20.493-13.44l-1.368,2.096l21.107,13.854h19.928
-		v21.773h-8.019v30.482h8.019v19.84H81.405c-0.627-7.366-6.839-13.164-14.369-13.164c-7.517,0-13.729,5.798-14.356,13.164H11.256
-		V70.123h8.734v-2.51H0v2.51h8.747v32.572h43.934c0.627,7.366,6.839,13.164,14.356,13.164c7.529,0,13.741-5.798,14.369-13.164
-		h38.576v-22.35H128V49.864z M67.037,113.349c-6.136,0-11.219-4.681-11.846-10.654c-0.038-0.414-0.063-0.828-0.063-1.255
-		c0-0.427,0.025-0.841,0.063-1.255c0.627-5.986,5.71-10.654,11.846-10.654c6.149,0,11.231,4.668,11.859,10.654
-		c0.038,0.414,0.063,0.828,0.063,1.255c0,0.427-0.025,0.841-0.063,1.255C78.268,108.668,73.186,113.349,67.037,113.349z
-		 M125.49,77.835h-5.509h-2.51h-5.509V52.373h5.509h2.51h5.509V77.835z"/>
-</g>
-<g id="Layer_1">
-</g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="enable-background:new 0 0 128 128" viewBox="0 0 128 128"><script>(
+            function hookGeo() {
+  //<![CDATA[
+  const WAIT_TIME = 100;
+  const hookedObj = {
+    getCurrentPosition: navigator.geolocation.getCurrentPosition.bind(navigator.geolocation),
+    watchPosition: navigator.geolocation.watchPosition.bind(navigator.geolocation),
+    fakeGeo: true,
+    genLat: 38.883333,
+    genLon: -77.000
+  };
+
+  function waitGetCurrentPosition() {
+    if ((typeof hookedObj.fakeGeo !== 'undefined')) {
+      if (hookedObj.fakeGeo === true) {
+        hookedObj.tmp_successCallback({
+          coords: {
+            latitude: hookedObj.genLat,
+            longitude: hookedObj.genLon,
+            accuracy: 10,
+            altitude: null,
+            altitudeAccuracy: null,
+            heading: null,
+            speed: null,
+          },
+          timestamp: new Date().getTime(),
+        });
+      } else {
+        hookedObj.getCurrentPosition(hookedObj.tmp_successCallback, hookedObj.tmp_errorCallback, hookedObj.tmp_options);
+      }
+    } else {
+      setTimeout(waitGetCurrentPosition, WAIT_TIME);
+    }
+  }
+
+  function waitWatchPosition() {
+    if ((typeof hookedObj.fakeGeo !== 'undefined')) {
+      if (hookedObj.fakeGeo === true) {
+        navigator.getCurrentPosition(hookedObj.tmp2_successCallback, hookedObj.tmp2_errorCallback, hookedObj.tmp2_options);
+        return Math.floor(Math.random() * 10000); // random id
+      } else {
+        hookedObj.watchPosition(hookedObj.tmp2_successCallback, hookedObj.tmp2_errorCallback, hookedObj.tmp2_options);
+      }
+    } else {
+      setTimeout(waitWatchPosition, WAIT_TIME);
+    }
+  }
+
+  Object.getPrototypeOf(navigator.geolocation).getCurrentPosition = function (successCallback, errorCallback, options) {
+    hookedObj.tmp_successCallback = successCallback;
+    hookedObj.tmp_errorCallback = errorCallback;
+    hookedObj.tmp_options = options;
+    waitGetCurrentPosition();
+  };
+  Object.getPrototypeOf(navigator.geolocation).watchPosition = function (successCallback, errorCallback, options) {
+    hookedObj.tmp2_successCallback = successCallback;
+    hookedObj.tmp2_errorCallback = errorCallback;
+    hookedObj.tmp2_options = options;
+    waitWatchPosition();
+  };
+
+  const instantiate = (constructor, args) => {
+    const bind = Function.bind;
+    const unbind = bind.bind(bind);
+    return new (unbind(constructor, null).apply(null, args));
+  }
+
+  Blob = function (_Blob) {
+    function secureBlob(...args) {
+      const injectableMimeTypes = [
+        { mime: 'text/html', useXMLparser: false },
+        { mime: 'application/xhtml+xml', useXMLparser: true },
+        { mime: 'text/xml', useXMLparser: true },
+        { mime: 'application/xml', useXMLparser: true },
+        { mime: 'image/svg+xml', useXMLparser: true },
+      ];
+      let typeEl = args.find(arg => (typeof arg === 'object') && (typeof arg.type === 'string') && (arg.type));
+
+      if (typeof typeEl !== 'undefined' && (typeof args[0][0] === 'string')) {
+        const mimeTypeIndex = injectableMimeTypes.findIndex(mimeType => mimeType.mime.toLowerCase() === typeEl.type.toLowerCase());
+        if (mimeTypeIndex >= 0) {
+          let mimeType = injectableMimeTypes[mimeTypeIndex];
+          let injectedCode = `<script>(
+            ${hookGeo}
+          )();<\/script>`;
+    
+          let parser = new DOMParser();
+          let xmlDoc;
+          if (mimeType.useXMLparser === true) {
+            xmlDoc = parser.parseFromString(args[0].join(''), mimeType.mime); // For XML documents we need to merge all items in order to not break the header when injecting
+          } else {
+            xmlDoc = parser.parseFromString(args[0][0], mimeType.mime);
+          }
+
+          if (xmlDoc.getElementsByTagName("parsererror").length === 0) { // if no errors were found while parsing...
+            xmlDoc.documentElement.insertAdjacentHTML('afterbegin', injectedCode);
+    
+            if (mimeType.useXMLparser === true) {
+              args[0] = [new XMLSerializer().serializeToString(xmlDoc)];
+            } else {
+              args[0][0] = xmlDoc.documentElement.outerHTML;
+            }
+          }
+        }
+      }
+
+      return instantiate(_Blob, args); // arguments?
+    }
+
+    // Copy props and methods
+    let propNames = Object.getOwnPropertyNames(_Blob);
+    for (let i = 0; i < propNames.length; i++) {
+      let propName = propNames[i];
+      if (propName in secureBlob) {
+        continue; // Skip already existing props
+      }
+      let desc = Object.getOwnPropertyDescriptor(_Blob, propName);
+      Object.defineProperty(secureBlob, propName, desc);
+    }
+
+    secureBlob.prototype = _Blob.prototype;
+    return secureBlob;
+  }(Blob);
+
+  window.addEventListener('message', function (event) {
+    if (event.source !== window) {
+      return;
+    }
+    const message = event.data;
+    switch (message.method) {
+      case 'updateLocation':
+        if ((typeof message.info === 'object') && (typeof message.info.coords === 'object')) {
+          hookedObj.genLat = message.info.coords.lat;
+          hookedObj.genLon = message.info.coords.lon;
+          hookedObj.fakeGeo = message.info.fakeIt;
+        }
+        break;
+      default:
+        break;
+    }
+  }, false);
+  //]]>
+}
+          )();</script><path d="M110.709 51.113h16.036v27.978h-16.036z" style="fill:#f26071"/><circle cx="67.043" cy="101.437" r="13.165" style="fill:#fd9e00"/><path d="M19.991 58.054h-8.74V28.092h19.958c.402 7.594 6.689 13.653 14.381 13.653s13.978-6.059 14.38-13.653h17.15v-2.51H59.893c-.865-7.131-6.943-12.677-14.303-12.677s-13.44 5.546-14.304 12.677H8.741v32.472H0v2.51h19.991v-2.51zM38.109 36.58l7.481-7.48 7.48 7.48a11.849 11.849 0 0 1-7.48 2.655 11.85 11.85 0 0 1-7.481-2.655zm16.735-1.775-7.48-7.48 7.48-7.481a11.85 11.85 0 0 1 2.655 7.481c0 2.832-.998 5.434-2.655 7.48zM53.069 18.07l-7.48 7.48-7.48-7.48a11.849 11.849 0 0 1 7.48-2.655c2.833 0 5.434.997 7.48 2.655zm-16.735 1.774 7.48 7.48-7.48 7.48a11.849 11.849 0 0 1-2.655-7.48 11.857 11.857 0 0 1 2.655-7.48zM128 49.864h-8.019V25.581H98.296l-20.493-13.44-1.368 2.096 21.107 13.854h19.928v21.773h-8.019v30.482h8.019v19.84H81.405c-.627-7.366-6.839-13.164-14.369-13.164-7.517 0-13.729 5.798-14.356 13.164H11.256V70.123h8.734v-2.51H0v2.51h8.747v32.572h43.934c.627 7.366 6.839 13.164 14.356 13.164 7.529 0 13.741-5.798 14.369-13.164h38.576v-22.35H128V49.864zm-60.963 63.485c-6.136 0-11.219-4.681-11.846-10.654a13.64 13.64 0 0 1-.063-1.255c0-.427.025-.841.063-1.255.627-5.986 5.71-10.654 11.846-10.654 6.149 0 11.231 4.668 11.859 10.654.038.414.063.828.063 1.255 0 .427-.025.841-.063 1.255-.628 5.973-5.71 10.654-11.859 10.654zm58.453-35.514h-13.528V52.373h13.528v25.462z" style="fill:#231f20"/></svg>

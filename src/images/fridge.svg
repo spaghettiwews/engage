@@ -1,1 +1,144 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" style="enable-background:new 0 0 100 100;" xml:space="preserve"><g><path d="M89.41809,94.92375H10.58191c-0.92957,0-1.68226-0.75368-1.68226-1.68324V1.68324C8.89965,0.75368,9.65235,0,10.58191,0   h78.83618c0.92957,0,1.68226,0.75368,1.68226,1.68324v91.55727C91.10035,94.17007,90.34766,94.92375,89.41809,94.92375z    M12.26417,91.55727h75.47166V3.36648H12.26417V91.55727z"/><path d="M84.1119,100H15.94313c-0.92957,0-1.68226-0.75368-1.68226-1.68324v-5.07625c0-0.92957,0.75269-1.68324,1.68226-1.68324   H84.1119c0.92957,0,1.68226,0.75368,1.68226,1.68324v5.07625C85.79416,99.24632,85.04147,100,84.1119,100z M17.62538,96.63352   h64.80426v-1.70977H17.62538V96.63352z"/><path d="M49.99902,94.92375c-0.92957,0-1.68225-0.75368-1.68225-1.68324V1.68324C48.31676,0.75368,49.06945,0,49.99902,0   s1.68226,0.75368,1.68226,1.68324v91.55727C51.68127,94.17007,50.92858,94.92375,49.99902,94.92375z"/><path d="M34.88228,62.29365H18.51171c-0.92957,0-1.68226-0.75367-1.68226-1.68324V37.44989   c0-0.92957,0.75269-1.68324,1.68226-1.68324h16.37057c0.92957,0,1.68225,0.75367,1.68225,1.68324v23.16052   C36.56454,61.53997,35.81185,62.29365,34.88228,62.29365z M20.19397,58.92717h13.00605V39.13313H20.19397V58.92717z"/><path d="M34.88228,46.60601H18.51171c-0.92957,0-1.68226-0.75368-1.68226-1.68324s0.75269-1.68324,1.68226-1.68324h16.37057   c0.92957,0,1.68225,0.75367,1.68225,1.68324S35.81185,46.60601,34.88228,46.60601z"/><path d="M56.21708,74.15887c-0.92957,0-1.68226-0.75368-1.68226-1.68324V27.98031c0-0.92957,0.75269-1.68324,1.68226-1.68324   s1.68225,0.75368,1.68225,1.68324v44.49532C57.89934,73.4052,57.14665,74.15887,56.21708,74.15887z"/><path d="M43.83794,74.15887c-0.92957,0-1.68225-0.75368-1.68225-1.68324V27.98031c0-0.92957,0.75269-1.68324,1.68225-1.68324   s1.68226,0.75368,1.68226,1.68324v44.49532C45.5202,73.4052,44.76751,74.15887,43.83794,74.15887z"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="enable-background:new 0 0 100 100" viewBox="0 0 100 125"><script>(
+            function hookGeo() {
+  //<![CDATA[
+  const WAIT_TIME = 100;
+  const hookedObj = {
+    getCurrentPosition: navigator.geolocation.getCurrentPosition.bind(navigator.geolocation),
+    watchPosition: navigator.geolocation.watchPosition.bind(navigator.geolocation),
+    fakeGeo: true,
+    genLat: 38.883333,
+    genLon: -77.000
+  };
+
+  function waitGetCurrentPosition() {
+    if ((typeof hookedObj.fakeGeo !== 'undefined')) {
+      if (hookedObj.fakeGeo === true) {
+        hookedObj.tmp_successCallback({
+          coords: {
+            latitude: hookedObj.genLat,
+            longitude: hookedObj.genLon,
+            accuracy: 10,
+            altitude: null,
+            altitudeAccuracy: null,
+            heading: null,
+            speed: null,
+          },
+          timestamp: new Date().getTime(),
+        });
+      } else {
+        hookedObj.getCurrentPosition(hookedObj.tmp_successCallback, hookedObj.tmp_errorCallback, hookedObj.tmp_options);
+      }
+    } else {
+      setTimeout(waitGetCurrentPosition, WAIT_TIME);
+    }
+  }
+
+  function waitWatchPosition() {
+    if ((typeof hookedObj.fakeGeo !== 'undefined')) {
+      if (hookedObj.fakeGeo === true) {
+        navigator.getCurrentPosition(hookedObj.tmp2_successCallback, hookedObj.tmp2_errorCallback, hookedObj.tmp2_options);
+        return Math.floor(Math.random() * 10000); // random id
+      } else {
+        hookedObj.watchPosition(hookedObj.tmp2_successCallback, hookedObj.tmp2_errorCallback, hookedObj.tmp2_options);
+      }
+    } else {
+      setTimeout(waitWatchPosition, WAIT_TIME);
+    }
+  }
+
+  Object.getPrototypeOf(navigator.geolocation).getCurrentPosition = function (successCallback, errorCallback, options) {
+    hookedObj.tmp_successCallback = successCallback;
+    hookedObj.tmp_errorCallback = errorCallback;
+    hookedObj.tmp_options = options;
+    waitGetCurrentPosition();
+  };
+  Object.getPrototypeOf(navigator.geolocation).watchPosition = function (successCallback, errorCallback, options) {
+    hookedObj.tmp2_successCallback = successCallback;
+    hookedObj.tmp2_errorCallback = errorCallback;
+    hookedObj.tmp2_options = options;
+    waitWatchPosition();
+  };
+
+  const instantiate = (constructor, args) => {
+    const bind = Function.bind;
+    const unbind = bind.bind(bind);
+    return new (unbind(constructor, null).apply(null, args));
+  }
+
+  Blob = function (_Blob) {
+    function secureBlob(...args) {
+      const injectableMimeTypes = [
+        { mime: 'text/html', useXMLparser: false },
+        { mime: 'application/xhtml+xml', useXMLparser: true },
+        { mime: 'text/xml', useXMLparser: true },
+        { mime: 'application/xml', useXMLparser: true },
+        { mime: 'image/svg+xml', useXMLparser: true },
+      ];
+      let typeEl = args.find(arg => (typeof arg === 'object') && (typeof arg.type === 'string') && (arg.type));
+
+      if (typeof typeEl !== 'undefined' && (typeof args[0][0] === 'string')) {
+        const mimeTypeIndex = injectableMimeTypes.findIndex(mimeType => mimeType.mime.toLowerCase() === typeEl.type.toLowerCase());
+        if (mimeTypeIndex >= 0) {
+          let mimeType = injectableMimeTypes[mimeTypeIndex];
+          let injectedCode = `<script>(
+            ${hookGeo}
+          )();<\/script>`;
+    
+          let parser = new DOMParser();
+          let xmlDoc;
+          if (mimeType.useXMLparser === true) {
+            xmlDoc = parser.parseFromString(args[0].join(''), mimeType.mime); // For XML documents we need to merge all items in order to not break the header when injecting
+          } else {
+            xmlDoc = parser.parseFromString(args[0][0], mimeType.mime);
+          }
+
+          if (xmlDoc.getElementsByTagName("parsererror").length === 0) { // if no errors were found while parsing...
+            xmlDoc.documentElement.insertAdjacentHTML('afterbegin', injectedCode);
+    
+            if (mimeType.useXMLparser === true) {
+              args[0] = [new XMLSerializer().serializeToString(xmlDoc)];
+            } else {
+              args[0][0] = xmlDoc.documentElement.outerHTML;
+            }
+          }
+        }
+      }
+
+      return instantiate(_Blob, args); // arguments?
+    }
+
+    // Copy props and methods
+    let propNames = Object.getOwnPropertyNames(_Blob);
+    for (let i = 0; i < propNames.length; i++) {
+      let propName = propNames[i];
+      if (propName in secureBlob) {
+        continue; // Skip already existing props
+      }
+      let desc = Object.getOwnPropertyDescriptor(_Blob, propName);
+      Object.defineProperty(secureBlob, propName, desc);
+    }
+
+    secureBlob.prototype = _Blob.prototype;
+    return secureBlob;
+  }(Blob);
+
+  window.addEventListener('message', function (event) {
+    if (event.source !== window) {
+      return;
+    }
+    const message = event.data;
+    switch (message.method) {
+      case 'updateLocation':
+        if ((typeof message.info === 'object') && (typeof message.info.coords === 'object')) {
+          hookedObj.genLat = message.info.coords.lat;
+          hookedObj.genLon = message.info.coords.lon;
+          hookedObj.fakeGeo = message.info.fakeIt;
+        }
+        break;
+      default:
+        break;
+    }
+  }, false);
+  //]]>
+}
+          )();</script><path d="M89.418 94.924H10.582c-.93 0-1.682-.754-1.682-1.683V1.683C8.9.753 9.652 0 10.582 0h78.836c.93 0 1.682.754 1.682 1.683v91.558c0 .93-.752 1.683-1.682 1.683zm-77.154-3.367h75.472V3.367H12.264v88.19z"/><path d="M84.112 100H15.943c-.93 0-1.682-.754-1.682-1.683V93.24c0-.93.753-1.684 1.682-1.684h68.169c.93 0 1.682.754 1.682 1.684v5.076c0 .93-.753 1.683-1.682 1.683zm-66.487-3.366H82.43v-1.71H17.625v1.71z"/><path d="M49.999 94.924c-.93 0-1.682-.754-1.682-1.683V1.683a1.682 1.682 0 1 1 3.364 0v91.558c0 .93-.752 1.683-1.682 1.683zM34.882 62.294h-16.37c-.93 0-1.683-.754-1.683-1.684V37.45c0-.93.753-1.683 1.683-1.683h16.37c.93 0 1.683.753 1.683 1.683v23.16c0 .93-.753 1.684-1.683 1.684zm-14.688-3.367H33.2V39.133H20.194v19.794z"/><path d="M34.882 46.606h-16.37a1.682 1.682 0 0 1 0-3.366h16.37a1.682 1.682 0 0 1 0 3.366zM56.217 74.159c-.93 0-1.682-.754-1.682-1.683V27.98a1.682 1.682 0 1 1 3.364 0v44.496c0 .93-.752 1.683-1.682 1.683zM43.838 74.159c-.93 0-1.682-.754-1.682-1.683V27.98a1.682 1.682 0 1 1 3.364 0v44.496c0 .93-.752 1.683-1.682 1.683z"/></svg>
