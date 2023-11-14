@@ -13,7 +13,7 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Header />
-      // <Alert message={alert}/>
+      {/* <Alert message={alert}/> */}
       <main className="App">
         <Switch>
           <Route exact path="/">
