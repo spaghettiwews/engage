@@ -12,7 +12,7 @@ const BookingForm = function(props) {
       allow="geolocation; microphone; camera; fullscreen"
       src="https://form.jotform.com/251002651717347"
       frameborder="0"
-      style={{minWidth: '100%', maxWidth: '100%', height: '539px', border: 'none'}}
+      style={{minWidth: '100%', maxWidth: '100%', height: '1840px', border: 'none'}}
       scrolling="no"
     >
     </iframe>
